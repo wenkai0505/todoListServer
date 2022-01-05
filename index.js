@@ -70,7 +70,7 @@ app.post('/api/todolist', (req, res) => {
 app.delete('/api/todolist/:_id', (req, res) => {
 
     let { _id } = req.params
-    console.log(_id)
+
 
     TodoList.findOneAndDelete({ _id })
         .then(() => {
@@ -79,6 +79,29 @@ app.delete('/api/todolist/:_id', (req, res) => {
         .catch((err) => {
             res.status(403).send(err.message)
         })
+})
+
+app.patch('/api/todolist/:_id', (req, res) => {
+
+    let { _id } = req.params
+    TodoList.findOne({ _id })
+        .then(() => {
+            TodoList.findOneAndUpdate({ _id }, req.body, { new: true, runValidators: true })
+                .then((todo) => {
+                    res.status(200).send({
+                        success: true,
+                        todo: todo
+                    })
+                })
+                .catch((err) => {
+                    res.status(400).send(err)
+                })
+        })
+
+        .catch((err) => {
+            res.status(400).send(err)
+        })
+
 })
 
 
