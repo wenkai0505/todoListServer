@@ -44,10 +44,10 @@ app.get('/api/todolist', (req, res) => {
 
 app.post('/api/todolist', (req, res) => {
 
-    let { name, date } = req.body
+    let { name, done, date } = req.body
 
     const newTodoList = new TodoList({
-        name: name, date: date
+        name, done, date
     })
 
     newTodoList.save()

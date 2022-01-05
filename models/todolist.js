@@ -6,10 +6,15 @@ const TodoListSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    done: {
+        type: Boolean,
+        default: false
+    },
     date: {
         type: Date,
-        default: Date.now
-    }
+        default: new Date()
+    },
+
 })
 
 
