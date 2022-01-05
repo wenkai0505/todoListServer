@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const nodemon = require('nodemon')
 
 
 const TodoListSchema = new mongoose.Schema({
@@ -10,10 +11,15 @@ const TodoListSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    date: {
-        type: Date,
-        default: new Date()
+    month: {
+        type: Number,
+        default: (new Date()).getMonth() + 1
     },
+    date: {
+        type: Number,
+        default: (new Date()).getDate()
+    },
+
 
 })
 
